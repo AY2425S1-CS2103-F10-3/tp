@@ -1,12 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Adds a remark to an existing person in the address book.
+ */
 public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
