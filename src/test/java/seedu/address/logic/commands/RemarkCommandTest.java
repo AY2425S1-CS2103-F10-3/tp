@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BASEBALL;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -36,5 +35,13 @@ public class RemarkCommandTest {
         expectedModel.setPerson(lastPerson, remarkedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, VALID_REMARK_BASEBALL);
+
+        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 }
