@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.model.person.Remark;
 
 public class RemarkCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
@@ -51,7 +52,7 @@ public class RemarkCommandParserTest {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + REMARK_DESC_BASEBALL;
 
-        RemarkCommand expectedCommand = new RemarkCommand(targetIndex, VALID_REMARK_BASEBALL);
+        RemarkCommand expectedCommand = new RemarkCommand(targetIndex, new Remark(VALID_REMARK_BASEBALL));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

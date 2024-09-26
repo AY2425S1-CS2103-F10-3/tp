@@ -57,9 +57,9 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        remark.setText(person.getRemark());
+        remark.setText(person.getRemark().value);
         // Remove the label from layout calculations if the remark is empty
         // Inspired by https://stackoverflow.com/a/28559958
-        remark.setManaged(!person.getRemark().isEmpty());
+        remark.setManaged(!person.getRemark().value.isEmpty());
     }
 }

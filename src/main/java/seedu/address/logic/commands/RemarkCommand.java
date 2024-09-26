@@ -12,6 +12,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Remark;
 
 /**
  * Adds a remark to an existing person in the address book.
@@ -31,13 +32,13 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_NO_REMARK_ADDED = "A remark must be provided.";
 
     private final Index index;
-    private final String remark;
+    private final Remark remark;
 
     /**
      * @param index of the person in the filtered person list to add a remark to
      * @param remark remark to add to the person
      */
-    public RemarkCommand(Index index, String remark) {
+    public RemarkCommand(Index index, Remark remark) {
         requireNonNull(index);
         requireNonNull(remark);
 
@@ -63,7 +64,7 @@ public class RemarkCommand extends Command {
         return new CommandResult(String.format(MESSAGE_REMARK_PERSON_SUCCESS, Messages.format(personToRemark)));
     }
 
-    private static Person createRemarkedPerson(Person personToAddRemark, String remark) {
+    private static Person createRemarkedPerson(Person personToAddRemark, Remark remark) {
         assert personToAddRemark != null;
 
         return new Person(
