@@ -15,7 +15,7 @@ import seedu.address.logic.commands.RemarkCommand;
 
 public class RemarkCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
 
     private RemarkCommandParser parser = new RemarkCommandParser();
 
@@ -25,7 +25,7 @@ public class RemarkCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", MarkCommand.MESSAGE_NO_REMARK_ADDED);
+        assertParseFailure(parser, "1", RemarkCommand.MESSAGE_NO_REMARK_ADDED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);

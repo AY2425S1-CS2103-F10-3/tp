@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -17,6 +18,14 @@ import seedu.address.model.person.Person;
  */
 public class RemarkCommand extends Command {
     public static final String COMMAND_WORD = "edit";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a remark to the person identified "
+            + "by the index number used in the displayed person list. "
+            + "An existing remark will be overwritten by the new remark.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_REMARK + "REMARK] "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_REMARK + "likes baseball";
 
     public static final String MESSAGE_REMARK_PERSON_SUCCESS = "Added remark to Person: %1$s";
 
