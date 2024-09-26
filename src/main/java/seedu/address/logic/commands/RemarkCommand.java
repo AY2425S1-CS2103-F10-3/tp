@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  * Adds a remark to an existing person in the address book.
  */
 public class RemarkCommand extends Command {
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "remark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a remark to the person identified "
             + "by the index number used in the displayed person list. "
