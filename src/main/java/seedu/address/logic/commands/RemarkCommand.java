@@ -28,6 +28,7 @@ public class RemarkCommand extends Command {
             + PREFIX_REMARK + "likes baseball";
 
     public static final String MESSAGE_REMARK_PERSON_SUCCESS = "Added remark to Person: %1$s";
+    public static final String MESSAGE_NO_REMARK_ADDED = "A remark must be provided.";
 
     private final Index index;
     private final String remark;
