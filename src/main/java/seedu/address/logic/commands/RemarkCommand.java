@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -45,7 +46,10 @@ public class RemarkCommand extends Command {
 
         Person personToRemark = lastShownList.get(index.getZeroBased());
         Person remarkedPerson = createRemarkedPerson(personToRemark, remark);
+
         model.setPerson(personToRemark, remarkedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(MESSAGE_REMARK_PERSON_SUCCESS, Messages.format(personToRemark)));
     }
 
