@@ -295,8 +295,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all people saved in their `BizBook`
-2.  `BizBook` shows a list of persons
+1.  User requests to list all people saved in their `BizBook`.
+2.  `BizBook` shows a list of persons.
 
     Use case ends.
 
@@ -308,12 +308,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-* *a. `BizBook` detects an error in the entered command.
+* 1b. `BizBook` detects an error in the entered command.
 
-    * *a1 `BizBook`  requests for a valid command.
-    * *a2 User enters new command.
+    * 1b1 `BizBook`  requests for a valid command.
+    * 1b2 User enters new command.
 
-      Steps *a1-*a2 are repeated until a valid command is input.
+      Steps 1b1-1b2 are repeated until a valid command is input.
 
       Use case ends.
 
