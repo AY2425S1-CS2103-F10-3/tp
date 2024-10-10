@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
@@ -46,6 +47,19 @@
           </padding>
         </StackPane>
 
+        <HBox id="contactList" fx:id="contactListPane" styleClass="pane-with-border" minWidth="340" prefWidth="340">
+            <!-- Contact list -->
+            <VBox fx:id="personList" styleClass="pane-with-border" VBox.vgrow="ALWAYS" minWidth= "400" prefWidth="400">
+                <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+            <!-- Contact details panel -->
+            <VBox id="personDetails">
+                <Label text = "Contact Details Here"/>
+            </VBox>
+        </HBox>
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
