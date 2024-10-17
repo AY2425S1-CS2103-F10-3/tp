@@ -9,7 +9,7 @@
 <VBox fx:id="contactDetailsPanel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="15">
   <HBox spacing="10">
     <Region HBox.hgrow="ALWAYS" />
-    <Button fx:id="edit" text="Edit" onAction="#makeFieldsEditable" />
+    <Button fx:id="edit" text="Edit" onAction="#showEditor" />
     <Button fx:id="saveChanges" text="Save" onAction="#saveEditChanges" />
     <Button fx:id="discardChanges" text="Cancel" onAction="#discardEditChanges" />
   </HBox>
