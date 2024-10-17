@@ -7,29 +7,30 @@
 
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.control.Button?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" spacing="15">
   <HBox spacing="10">
     <Region HBox.hgrow="ALWAYS" />
     <Button fx:id="saveChanges" text="Save" onAction="#saveChanges" />
     <Button fx:id="discardChanges" text="Cancel" onAction="#discardChanges" />
   </HBox>
 
-  <HBox spacing="10">
+  <HBox spacing="10" alignment="CENTER_LEFT">
     <Label styleClass="label-bright" text="Name:" />
     <TextField fx:id="nameField" />
   </HBox>
 
-  <HBox spacing="10">
+  <HBox spacing="10" alignment="CENTER_LEFT">
     <Label styleClass="label-bright" text="Mobile:" />
     <TextField fx:id="phoneNoField" />
   </HBox>
 
-  <HBox spacing="10">
+  <HBox spacing="10" alignment="CENTER_LEFT">
     <Label styleClass="label-bright" text="Email:" />
     <TextField fx:id="emailField" />
   </HBox>
 
-  <HBox spacing="10">
+  <HBox spacing="10" alignment="CENTER_LEFT">
     <Label styleClass="label-bright" text="Address:" />
     <TextField fx:id="addressField" />
   </HBox>
