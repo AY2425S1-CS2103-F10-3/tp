@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<VBox fx:id="contactDetailsPanel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="contactDetailsPanel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="15">
   <HBox spacing="10">
     <Label fx:id="name" styleClass="label-header" HBox.hgrow="ALWAYS" />
     <Button fx:id="edit" text="Edit" onAction="#makeFieldsEditable" />
     <Button fx:id="saveChanges" text="Save" onAction="#saveEditChanges" />
     <Button fx:id="discardChanges" text="Cancel" onAction="#discardEditChanges" />
   </HBox>
-  <GridPane HBox.hgrow="ALWAYS">
-    <padding>
-      <Insets left="10" />
-    </padding>
-    <VBox fx:id="contactDetailsBox" spacing="15">
-      <Label fx:id="phoneNo" styleClass="label-bright" />
-      <Label fx:id="email" styleClass="label-bright" />
-      <Label fx:id="address" styleClass="label-bright" />
-      <Label fx:id="notes" styleClass="label-bright" />
-      <VBox fx:id="notesList" />
-    </VBox>
-  </GridPane>
+
+  <Label fx:id="phoneNo" styleClass="label-bright" />
+  <Label fx:id="email" styleClass="label-bright" />
+  <Label fx:id="address" styleClass="label-bright" />
+  <Label fx:id="notes" styleClass="label-bright" />
+
+  <VBox fx:id="notesList" />
 </VBox>
