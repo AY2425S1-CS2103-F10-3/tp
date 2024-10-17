@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.StackPane?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="15">
+  <StackPane fx:id="editorPlaceholder" VBox.vgrow="ALWAYS" />
+
   <HBox spacing="10">
     <Region HBox.hgrow="ALWAYS" />
     <Button fx:id="edit" text="Edit" onAction="#showEditor" />
-    <Button fx:id="saveChanges" text="Save" onAction="#saveEditChanges" />
-    <Button fx:id="discardChanges" text="Cancel" onAction="#discardEditChanges" />
   </HBox>
 
   <VBox fx:id="detailsPanel" spacing="15">
@@ -34,6 +34,4 @@
     <Label fx:id="notes" styleClass="label-bright" />
     <VBox fx:id="notesList" />
   </VBox>
-
-  <StackPane fx:id="editorPlaceholder" VBox.vgrow="ALWAYS" />
 </VBox>

@@ -25,6 +25,7 @@ public class ContactDetails extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ContactDetails.class);
 
     private final BooleanProperty isEditorShown = new SimpleBooleanProperty(false);
+    private ContactDetailsEditor detailsEditor;
     private Person person;
 
     @FXML
@@ -46,10 +47,6 @@ public class ContactDetails extends UiPart<Region> {
     @FXML
     private Button edit;
     @FXML
-    private Button saveChanges;
-    @FXML
-    private Button discardChanges;
-    @FXML
     private StackPane editorPlaceholder;
 
     /**
@@ -69,15 +66,11 @@ public class ContactDetails extends UiPart<Region> {
         // This means that when a control is invisible, it should not take up
         // any space when laying out the controls.
         edit.managedProperty().bindBidirectional(edit.visibleProperty());
-        saveChanges.managedProperty().bindBidirectional(saveChanges.visibleProperty());
-        discardChanges.managedProperty().bindBidirectional(discardChanges.visibleProperty());
         editorPlaceholder.managedProperty().bindBidirectional(editorPlaceholder.visibleProperty());
         detailsPanel.managedProperty().bindBidirectional(detailsPanel.visibleProperty());
 
-        // Bind the visibilities of the controls to the isEditable property
+        // Bind the visibilities of the controls to the isEditorShown property
         edit.visibleProperty().bind(isEditorShown.not());
-        saveChanges.visibleProperty().bind(isEditorShown);
-        discardChanges.visibleProperty().bind(isEditorShown);
         editorPlaceholder.visibleProperty().bind(isEditorShown);
         detailsPanel.visibleProperty().bind(isEditorShown.not());
     }
@@ -90,8 +83,6 @@ public class ContactDetails extends UiPart<Region> {
         // Set the button's min width to their preferred size, i.e. the size
         // they would have if the text within them can be fully displayed.
         edit.setMinWidth(Control.USE_PREF_SIZE);
-        saveChanges.setMinWidth(Control.USE_PREF_SIZE);
-        discardChanges.setMinWidth(Control.USE_PREF_SIZE);
     }
 
     /**
@@ -100,7 +91,7 @@ public class ContactDetails extends UiPart<Region> {
     private void loadEditor(Person person) {
         requireNonNull(person);
 
-        ContactDetailsEditor detailsEditor = new ContactDetailsEditor(person);
+        detailsEditor = new ContactDetailsEditor(isEditorShown, person);
         editorPlaceholder.getChildren().add(detailsEditor.getRoot());
     }
 
@@ -160,16 +151,5 @@ public class ContactDetails extends UiPart<Region> {
     @FXML
     private void showEditor() {
         isEditorShown.set(true);
-    }
-
-    @FXML
-    private void discardEditChanges() {
-        isEditorShown.set(false);
-    }
-
-    @FXML
-    private void saveEditChanges() {
-        isEditorShown.set(false);
-        // TODO: Save the changes to the person
     }
 }

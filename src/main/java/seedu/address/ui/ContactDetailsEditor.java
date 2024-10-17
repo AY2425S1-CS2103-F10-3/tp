@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
@@ -20,10 +22,12 @@ public class ContactDetailsEditor extends UiPart<Region> {
     private static final String FXML = "ContactDetailsEditor.fxml";
     private final Logger logger = LogsCenter.getLogger(ContactDetailsEditor.class);
 
+    private final BooleanProperty isEditorShown;
     private final Person person;
 
     @FXML
     private Button saveChanges;
+    @FXML
     private Button discardChanges;
 
     @FXML
@@ -37,10 +41,18 @@ public class ContactDetailsEditor extends UiPart<Region> {
 
     /**
      * Creates a {@code ContactDetailsEditor} that can edit a {@code Person}.
+     *
+     * @param isEditorShown whether this editor should still be shown. Will be
+     *                      set to false when this editor should be closed.
+     * @param person the person to edit
      */
-    public ContactDetailsEditor(Person person) {
+    public ContactDetailsEditor(BooleanProperty isEditorShown, Person person) {
         super(FXML);
+        this.isEditorShown = isEditorShown;
         this.person = person;
+
+        bindControlsToEditableProperty();
+        setButtonTextAlwaysVisible();
         fillFieldsWithPerson(person);
     }
 
@@ -51,7 +63,32 @@ public class ContactDetailsEditor extends UiPart<Region> {
         addressField.setText(person.getAddress().value);
     }
 
-    private void saveChanges() {
+    /**
+     * Adjusts the buttons such that their text will always be visible
+     * regardless of resizing.
+     */
+    private void setButtonTextAlwaysVisible() {
+        // Set the buttons' min width to their preferred size, i.e. the size
+        // they would have if the text within them can be fully displayed.
+        saveChanges.setMinWidth(Control.USE_PREF_SIZE);
+        discardChanges.setMinWidth(Control.USE_PREF_SIZE);
+    }
+
+    /**
+     * Creates bindings between the button controls to `isEditable`
+     */
+    private void bindControlsToEditableProperty() {
+        // Bind the buttons' managed property to their visibility.
+        saveChanges.managedProperty().bindBidirectional(saveChanges.visibleProperty());
+        discardChanges.managedProperty().bindBidirectional(discardChanges.visibleProperty());
+
+        // Bind the visibilities of the controls to the isEditorShown property
+        saveChanges.visibleProperty().bind(isEditorShown);
+        discardChanges.visibleProperty().bind(isEditorShown);
+    }
+
+    @FXML
+    void saveChanges() {
         Person newPerson = new Person(
             new Name(nameField.getText()),
             new Phone(phoneNoField.getText()),
@@ -60,10 +97,14 @@ public class ContactDetailsEditor extends UiPart<Region> {
             person.getTags(),
             person.getNotes()
         );
-        // TODO: Save the values
+
+        // TODO: Save changes
+        isEditorShown.set(false);
     }
 
-    private void discardChanges() {
+    @FXML
+    void discardChanges() {
         fillFieldsWithPerson(person);
+        isEditorShown.set(false);
     }
 }
