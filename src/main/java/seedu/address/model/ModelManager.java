@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private Person focusedPerson;
+    private Index focusedIndex;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -96,6 +97,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Index getFocusedIndex() {
+        return this.focusedIndex;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -123,8 +129,10 @@ public class ModelManager implements Model {
     public void setFocusedPerson(Index index) {
         if (index == null) {
             this.focusedPerson = null;
+            this.focusedIndex = null;
         } else {
             this.focusedPerson = this.filteredPersons.get(index.getZeroBased());
+            this.focusedIndex = index;
         }
     }
 

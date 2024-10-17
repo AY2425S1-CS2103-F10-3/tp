@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -45,21 +46,17 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
-     * Returns the person who will be focused on.
+     * Returns the person who is currently being focused on.
      */
     Person getFocusedPerson();
+
+    /**
+     * Returns the index of the person who is currently being focused on.
+     */
+    Index getFocusedIndex();
 
     /**
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-
-    // TODO: This is a bad solution for the ContactDetailsEditor. The index of
-    //  the person to edit should be passed down to code instead.
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
 }

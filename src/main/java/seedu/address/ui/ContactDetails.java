@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 
@@ -27,7 +28,7 @@ public class ContactDetails extends UiPart<Region> {
 
     private final BooleanProperty isEditorShown = new SimpleBooleanProperty(false);
     private ContactDetailsEditor detailsEditor;
-    private ContactDetailsEditor.PersonEditor personEditor;
+    private final CommandExecutor commandExecutor;
     private Person person;
 
     @FXML
@@ -54,12 +55,9 @@ public class ContactDetails extends UiPart<Region> {
     /**
      * Creates a {@code ContactDetailsPanel}
      */
-    public ContactDetails(ContactDetailsEditor.PersonEditor personEditor) {
+    public ContactDetails(CommandExecutor commandExecutor) {
         super(FXML);
-        this.personEditor = (previousPerson, newPerson) -> {
-            personEditor.edit(previousPerson, newPerson);
-            setPerson(newPerson);
-        };
+        this.commandExecutor = commandExecutor;
         bindControlsToEditableProperty();
         setButtonTextAlwaysVisible();
     }
@@ -94,10 +92,10 @@ public class ContactDetails extends UiPart<Region> {
     /**
      * Loads ContactDetailsEditor into the controlDetailsEditorPlaceholder control
      */
-    private void loadEditor(Person person) {
+    private void loadEditor(Person person, Index index) {
         requireNonNull(person);
 
-        detailsEditor = new ContactDetailsEditor(isEditorShown, person, personEditor);
+        detailsEditor = new ContactDetailsEditor(isEditorShown, person, index, commandExecutor);
         editorPlaceholder.getChildren().add(detailsEditor.getRoot());
     }
 
@@ -106,11 +104,11 @@ public class ContactDetails extends UiPart<Region> {
      *
      * @param person The person object to be updated onto the panel.
      */
-    public void setPerson(Person person) {
+    public void setPerson(Person person, Index index) {
         this.person = person;
         clearPanel();
         setPanelInformation();
-        loadEditor(person);
+        loadEditor(person, index);
     }
 
     /**
