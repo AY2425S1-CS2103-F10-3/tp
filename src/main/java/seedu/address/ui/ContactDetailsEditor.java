@@ -54,6 +54,8 @@ public class ContactDetailsEditor extends UiPart<Region> {
         bindControlsToEditableProperty();
         setButtonTextAlwaysVisible();
         fillFieldsWithPerson(person);
+
+        logger.info("Editing info of " + person);
     }
 
     private void fillFieldsWithPerson(Person person) {
@@ -99,12 +101,14 @@ public class ContactDetailsEditor extends UiPart<Region> {
         );
 
         // TODO: Save changes
+        logger.info("Saved changes for " + person);
         isEditorShown.set(false);
     }
 
     @FXML
     void discardChanges() {
         fillFieldsWithPerson(person);
+        logger.info("Discarded changes for " + person);
         isEditorShown.set(false);
     }
 }
