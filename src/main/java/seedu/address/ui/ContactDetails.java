@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Comparator;
 import java.util.logging.Logger;
 
@@ -10,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -46,39 +49,57 @@ public class ContactDetails extends UiPart<Region> {
     private Button saveChanges;
     @FXML
     private Button discardChanges;
+    @FXML
+    private StackPane editorPlaceholder;
 
     /**
-     * Creates a {@code ContactDetailsPanel} with the given {@code Person} information.
+     * Creates a {@code ContactDetailsPanel}
      */
     public ContactDetails() {
         super(FXML);
-        bindButtonToEditableProperty();
-        setButtonMinWidth();
+        bindControlsToEditableProperty();
+        setButtonTextAlwaysVisible();
     }
 
     /**
      * Creates bindings between the button controls to `isEditable`
      */
-    private void bindButtonToEditableProperty() {
-        // Bind the button's managed property to their visibility.
+    private void bindControlsToEditableProperty() {
+        // Bind the controls' managed property to their visibility.
         // This means that when a button is invisible, it should not take up any
         // space when laying out the controls.
         edit.managedProperty().bindBidirectional(edit.visibleProperty());
         saveChanges.managedProperty().bindBidirectional(saveChanges.visibleProperty());
         discardChanges.managedProperty().bindBidirectional(discardChanges.visibleProperty());
+        editorPlaceholder.managedProperty().bindBidirectional(editorPlaceholder.visibleProperty());
 
-        // Bind the visibilities of the button to the isEditable property
+        // Bind the visibilities of the controls to the isEditable property
         edit.visibleProperty().bind(isEditorShown.not());
         saveChanges.visibleProperty().bind(isEditorShown);
         discardChanges.visibleProperty().bind(isEditorShown);
+        editorPlaceholder.visibleProperty().bind(isEditorShown);
     }
 
-    private void setButtonMinWidth() {
+    /**
+     * Adjusts the buttons such that their text will always be visible
+     * regardless of resizing.
+     */
+    private void setButtonTextAlwaysVisible() {
         // Set the button's min width to their preferred size, i.e. the size
         // they would have if the text within them can be fully displayed.
         edit.setMinWidth(Control.USE_PREF_SIZE);
         saveChanges.setMinWidth(Control.USE_PREF_SIZE);
         discardChanges.setMinWidth(Control.USE_PREF_SIZE);
+    }
+
+    /**
+     * Loads ContactDetailsEditor into the controlDetailsEditorPlaceholder control
+     */
+    private void loadEditor(Person person) {
+        requireNonNull(person);
+
+        ContactDetailsEditor detailsEditor = new ContactDetailsEditor(person);
+        editorPlaceholder.getChildren().add(detailsEditor.getRoot());
     }
 
     /**
@@ -88,8 +109,9 @@ public class ContactDetails extends UiPart<Region> {
      */
     public void setPerson(Person person) {
         this.person = person;
-        this.clearPanel();
-        this.setPanelInformation();
+        clearPanel();
+        setPanelInformation();
+        loadEditor(person);
     }
 
     /**

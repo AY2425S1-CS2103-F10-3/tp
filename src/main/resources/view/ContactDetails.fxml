@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 
 <VBox fx:id="contactDetailsPanel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="15">
   <HBox spacing="10">
@@ -31,4 +32,6 @@
 
   <Label fx:id="notes" styleClass="label-bright" />
   <VBox fx:id="notesList" />
+
+  <StackPane fx:id="editorPlaceholder" VBox.vgrow="ALWAYS" />
 </VBox>
