@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 
-<VBox fx:id="contactDetailsPanel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="15">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="15">
   <HBox spacing="10">
     <Region HBox.hgrow="ALWAYS" />
     <Button fx:id="edit" text="Edit" onAction="#showEditor" />
@@ -15,23 +15,25 @@
     <Button fx:id="discardChanges" text="Cancel" onAction="#discardEditChanges" />
   </HBox>
 
-  <Label fx:id="name" styleClass="label-header" HBox.hgrow="ALWAYS" />
+  <VBox fx:id="detailsPanel" spacing="15">
+    <Label fx:id="name" styleClass="label-header" HBox.hgrow="ALWAYS" />
 
-  <HBox spacing="10">
-    <Label styleClass="label-bright" text="Mobile:" />
-    <Label fx:id="phoneNo" styleClass="label-bright" />
-  </HBox>
-  <HBox spacing="10">
-    <Label styleClass="label-bright" text="Email:" />
-    <Label fx:id="email" styleClass="label-bright" />
-  </HBox>
-  <HBox spacing="10">
-    <Label styleClass="label-bright" text="Address:" />
-    <Label fx:id="address" styleClass="label-bright" />
-  </HBox>
+    <HBox spacing="10">
+      <Label styleClass="label-bright" text="Mobile:" />
+      <Label fx:id="phoneNo" styleClass="label-bright" />
+    </HBox>
+    <HBox spacing="10">
+      <Label styleClass="label-bright" text="Email:" />
+      <Label fx:id="email" styleClass="label-bright" />
+    </HBox>
+    <HBox spacing="10">
+      <Label styleClass="label-bright" text="Address:" />
+      <Label fx:id="address" styleClass="label-bright" />
+    </HBox>
 
-  <Label fx:id="notes" styleClass="label-bright" />
-  <VBox fx:id="notesList" />
+    <Label fx:id="notes" styleClass="label-bright" />
+    <VBox fx:id="notesList" />
+  </VBox>
 
   <StackPane fx:id="editorPlaceholder" VBox.vgrow="ALWAYS" />
 </VBox>

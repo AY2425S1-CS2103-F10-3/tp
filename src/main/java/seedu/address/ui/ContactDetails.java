@@ -28,7 +28,7 @@ public class ContactDetails extends UiPart<Region> {
     private Person person;
 
     @FXML
-    private VBox contactDetailsPanel;
+    private VBox detailsPanel;
 
     @FXML
     private Label name;
@@ -66,18 +66,20 @@ public class ContactDetails extends UiPart<Region> {
      */
     private void bindControlsToEditableProperty() {
         // Bind the controls' managed property to their visibility.
-        // This means that when a button is invisible, it should not take up any
-        // space when laying out the controls.
+        // This means that when a control is invisible, it should not take up
+        // any space when laying out the controls.
         edit.managedProperty().bindBidirectional(edit.visibleProperty());
         saveChanges.managedProperty().bindBidirectional(saveChanges.visibleProperty());
         discardChanges.managedProperty().bindBidirectional(discardChanges.visibleProperty());
         editorPlaceholder.managedProperty().bindBidirectional(editorPlaceholder.visibleProperty());
+        detailsPanel.managedProperty().bindBidirectional(detailsPanel.visibleProperty());
 
         // Bind the visibilities of the controls to the isEditable property
         edit.visibleProperty().bind(isEditorShown.not());
         saveChanges.visibleProperty().bind(isEditorShown);
         discardChanges.visibleProperty().bind(isEditorShown);
         editorPlaceholder.visibleProperty().bind(isEditorShown);
+        detailsPanel.visibleProperty().bind(isEditorShown.not());
     }
 
     /**
