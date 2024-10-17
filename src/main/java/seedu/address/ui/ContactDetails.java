@@ -122,9 +122,9 @@ public class ContactDetails extends UiPart<Region> {
             logger.info("Displaying info of " + person.toString());
 
             name.setText(person.getName().fullName);
-            phoneNo.setText("Mobile: " + person.getPhone().toString());
-            email.setText("Email: " + person.getEmail().toString());
-            address.setText("Address: " + person.getAddress().toString());
+            phoneNo.setText(person.getPhone().value);
+            email.setText(person.getEmail().value);
+            address.setText(person.getAddress().value);
 
             if (!person.getNotes().isEmpty()) {
                 Label notesHeader = new Label("Notes");

@@ -3,8 +3,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
+
 <VBox fx:id="contactDetailsPanel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="15">
   <HBox spacing="10">
     <Label fx:id="name" styleClass="label-header" HBox.hgrow="ALWAYS" />
@@ -13,10 +13,19 @@
     <Button fx:id="discardChanges" text="Cancel" onAction="#discardEditChanges" />
   </HBox>
 
-  <Label fx:id="phoneNo" styleClass="label-bright" />
-  <Label fx:id="email" styleClass="label-bright" />
-  <Label fx:id="address" styleClass="label-bright" />
-  <Label fx:id="notes" styleClass="label-bright" />
+  <HBox spacing="10">
+    <Label styleClass="label-bright" text="Mobile:" />
+    <Label fx:id="phoneNo" styleClass="label-bright" />
+  </HBox>
+  <HBox spacing="10">
+    <Label styleClass="label-bright" text="Email:" />
+    <Label fx:id="email" styleClass="label-bright" />
+  </HBox>
+  <HBox spacing="10">
+    <Label styleClass="label-bright" text="Address:" />
+    <Label fx:id="address" styleClass="label-bright" />
+  </HBox>
 
+  <Label fx:id="notes" styleClass="label-bright" />
   <VBox fx:id="notesList" />
 </VBox>
