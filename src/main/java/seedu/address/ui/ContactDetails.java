@@ -56,7 +56,10 @@ public class ContactDetails extends UiPart<Region> {
      */
     public ContactDetails(ContactDetailsEditor.PersonEditor personEditor) {
         super(FXML);
-        this.personEditor = personEditor;
+        this.personEditor = (previousPerson, newPerson) -> {
+            personEditor.edit(previousPerson, newPerson);
+            setPerson(newPerson);
+        };
         bindControlsToEditableProperty();
         setButtonTextAlwaysVisible();
     }
