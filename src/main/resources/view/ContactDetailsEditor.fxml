@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+  <HBox spacing="10">
+    <Label styleClass="label-bright" text="Name:" />
+    <TextField fx:id="nameField" />
+  </HBox>
+
+  <HBox spacing="10">
+    <Label styleClass="label-bright" text="Mobile:" />
+    <TextField fx:id="phoneNoField" />
+  </HBox>
+
+  <HBox spacing="10">
+    <Label styleClass="label-bright" text="Email:" />
+    <TextField fx:id="emailField" />
+  </HBox>
+
+  <HBox spacing="10">
+    <Label styleClass="label-bright" text="Address:" />
+    <TextField fx:id="addressField" />
+  </HBox>
+</VBox>
