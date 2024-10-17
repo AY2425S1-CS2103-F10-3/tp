@@ -90,4 +90,9 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public void setPerson(Person target, Person editedPerson) {
+        model.setPerson(target, editedPerson);
+    }
 }

@@ -19,11 +19,20 @@ import seedu.address.model.person.Phone;
  * Controller for a contact details editor.
  */
 public class ContactDetailsEditor extends UiPart<Region> {
+    /**
+     * Represents a function that can update a person
+     */
+    @FunctionalInterface
+    public interface PersonEditor {
+        void edit(Person previousPerson, Person newPerson);
+    }
+
     private static final String FXML = "ContactDetailsEditor.fxml";
     private final Logger logger = LogsCenter.getLogger(ContactDetailsEditor.class);
 
     private final BooleanProperty isEditorShown;
     private final Person person;
+    private final PersonEditor editor;
 
     @FXML
     private Button saveChanges;
@@ -39,6 +48,8 @@ public class ContactDetailsEditor extends UiPart<Region> {
     @FXML
     private TextField addressField;
 
+
+
     /**
      * Creates a {@code ContactDetailsEditor} that can edit a {@code Person}.
      *
@@ -46,10 +57,11 @@ public class ContactDetailsEditor extends UiPart<Region> {
      *                      set to false when this editor should be closed.
      * @param person the person to edit
      */
-    public ContactDetailsEditor(BooleanProperty isEditorShown, Person person) {
+    public ContactDetailsEditor(BooleanProperty isEditorShown, Person person, PersonEditor editor) {
         super(FXML);
         this.isEditorShown = isEditorShown;
         this.person = person;
+        this.editor = editor;
 
         bindControlsToEditableProperty();
         setButtonTextAlwaysVisible();
@@ -89,6 +101,7 @@ public class ContactDetailsEditor extends UiPart<Region> {
         discardChanges.visibleProperty().bind(isEditorShown);
     }
 
+
     @FXML
     void saveChanges() {
         Person newPerson = new Person(
@@ -100,7 +113,8 @@ public class ContactDetailsEditor extends UiPart<Region> {
             person.getNotes()
         );
 
-        // TODO: Save changes
+        editor.edit(person, newPerson);
+
         logger.info("Saved changes for " + person);
         isEditorShown.set(false);
     }
@@ -111,4 +125,6 @@ public class ContactDetailsEditor extends UiPart<Region> {
         logger.info("Discarded changes for " + person);
         isEditorShown.set(false);
     }
+
+
 }

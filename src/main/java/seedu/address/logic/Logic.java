@@ -53,4 +53,13 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    // TODO: This is a bad solution for the ContactDetailsEditor. The index of
+    //  the person to edit should be passed down to code instead.
+    /**
+     * Replaces the given person {@code target} with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    void setPerson(Person target, Person editedPerson);
 }

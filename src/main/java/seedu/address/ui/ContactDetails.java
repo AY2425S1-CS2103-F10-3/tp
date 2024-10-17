@@ -27,6 +27,7 @@ public class ContactDetails extends UiPart<Region> {
 
     private final BooleanProperty isEditorShown = new SimpleBooleanProperty(false);
     private ContactDetailsEditor detailsEditor;
+    private ContactDetailsEditor.PersonEditor personEditor;
     private Person person;
 
     @FXML
@@ -53,8 +54,9 @@ public class ContactDetails extends UiPart<Region> {
     /**
      * Creates a {@code ContactDetailsPanel}
      */
-    public ContactDetails() {
+    public ContactDetails(ContactDetailsEditor.PersonEditor personEditor) {
         super(FXML);
+        this.personEditor = personEditor;
         bindControlsToEditableProperty();
         setButtonTextAlwaysVisible();
     }
@@ -92,7 +94,7 @@ public class ContactDetails extends UiPart<Region> {
     private void loadEditor(Person person) {
         requireNonNull(person);
 
-        detailsEditor = new ContactDetailsEditor(isEditorShown, person);
+        detailsEditor = new ContactDetailsEditor(isEditorShown, person, personEditor);
         editorPlaceholder.getChildren().add(detailsEditor.getRoot());
     }
 
