@@ -6,13 +6,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="contactDetailsPanel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Button?>
+<VBox fx:id="contactDetailsPanel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <HBox>
+    <Label fx:id="name" styleClass="label-header" />
+    <Button fx:id="edit" text="Edit" onAction="#makeFieldsEditable" />
+    <Button fx:id="saveChanges" text="Save" onAction="#saveEditChanges" />
+    <Button fx:id="discardChanges" text="Cancel" onAction="#discardEditChanges" />
+  </HBox>
   <GridPane HBox.hgrow="ALWAYS">
     <padding>
       <Insets left="10" />
     </padding>
     <VBox fx:id="contactDetailsBox" spacing="15">
-      <Label fx:id="name" styleClass="label-header" />
       <Label fx:id="phoneNo" styleClass="label-bright" />
       <Label fx:id="email" styleClass="label-bright" />
       <Label fx:id="address" styleClass="label-bright" />
@@ -20,4 +26,4 @@
       <VBox fx:id="notesList" />
     </VBox>
   </GridPane>
-</HBox>
+</VBox>

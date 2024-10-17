@@ -3,9 +3,11 @@ package seedu.address.ui;
 import java.util.Comparator;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
@@ -19,10 +21,12 @@ public class ContactDetails extends UiPart<Region> {
     private static final String FXML = "ContactDetails.fxml";
     private final Logger logger = LogsCenter.getLogger(ContactDetails.class);
 
+    private BooleanProperty isEditable = new SimpleBooleanProperty(false);
+
     private Person person;
 
     @FXML
-    private HBox contactDetailsPanel;
+    private VBox contactDetailsPanel;
 
     @FXML
     private Label name;
@@ -42,12 +46,37 @@ public class ContactDetails extends UiPart<Region> {
     @FXML
     private VBox notesList;
 
+    @FXML
+    private Button edit;
+    @FXML
+    private Button saveChanges;
+    @FXML
+    private Button discardChanges;
+
     /**
      * Creates a {@code ContactDetailsPanel} with the given {@code Person} information.
      */
     public ContactDetails(Person person) {
         super(FXML);
         this.person = person;
+        bindButtonToEditableProperty();
+    }
+
+    /**
+     * Creates bindings between the button controls to `isEditable`
+     */
+    private void bindButtonToEditableProperty() {
+        // Bind the button's managed property to their visibility.
+        // This means that when a button is invisible, it should not take up any
+        // space when laying out the controls.
+        edit.managedProperty().bindBidirectional(edit.visibleProperty());
+        saveChanges.managedProperty().bindBidirectional(saveChanges.visibleProperty());
+        discardChanges.managedProperty().bindBidirectional(discardChanges.visibleProperty());
+
+        // Bind the visibilities of the button to the isEditable property
+        edit.visibleProperty().bind(isEditable.not());
+        saveChanges.visibleProperty().bind(isEditable);
+        discardChanges.visibleProperty().bind(isEditable);
     }
 
     /**
@@ -100,5 +129,21 @@ public class ContactDetails extends UiPart<Region> {
                         });
             }
         }
+    }
+
+    @FXML
+    private void makeFieldsEditable() {
+        isEditable.set(true);
+    }
+
+    @FXML
+    private void discardEditChanges() {
+        isEditable.set(false);
+    }
+
+    @FXML
+    private void saveEditChanges() {
+        isEditable.set(false);
+        // TODO: Save the changes to the person
     }
 }
