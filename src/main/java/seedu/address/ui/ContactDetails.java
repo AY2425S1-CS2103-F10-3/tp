@@ -7,6 +7,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -60,6 +61,7 @@ public class ContactDetails extends UiPart<Region> {
         super(FXML);
         this.person = person;
         bindButtonToEditableProperty();
+        setButtonMinWidth();
     }
 
     /**
@@ -77,6 +79,14 @@ public class ContactDetails extends UiPart<Region> {
         edit.visibleProperty().bind(isEditable.not());
         saveChanges.visibleProperty().bind(isEditable);
         discardChanges.visibleProperty().bind(isEditable);
+    }
+
+    private void setButtonMinWidth() {
+        // Set the button's min width to their preferred size, i.e. the size
+        // they would have if the text within them can be fully displayed.
+        edit.setMinWidth(Control.USE_PREF_SIZE);
+        saveChanges.setMinWidth(Control.USE_PREF_SIZE);
+        discardChanges.setMinWidth(Control.USE_PREF_SIZE);
     }
 
     /**
