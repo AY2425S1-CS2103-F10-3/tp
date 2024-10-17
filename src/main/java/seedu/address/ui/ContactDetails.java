@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 
 /**
@@ -124,28 +125,29 @@ public class ContactDetails extends UiPart<Region> {
      * Adds the contact details of the person into the panel.
      */
     private void setPanelInformation() {
+        requireNonNull(person);
+
         // Update with new person details if person is not null
-        if (person != null) {
-            logger.info("Displaying info of " + person.toString());
+        logger.info("Displaying info of " + person.toString());
 
-            name.setText(person.getName().fullName);
-            phoneNo.setText(person.getPhone().value);
-            email.setText(person.getEmail().value);
-            address.setText(person.getAddress().value);
+        name.setText(person.getName().fullName);
+        phoneNo.setText(person.getPhone().value);
+        email.setText(person.getEmail().value);
+        address.setText(person.getAddress().value);
 
-            if (!person.getNotes().isEmpty()) {
-                Label notesHeader = new Label("Notes");
-                notesHeader.setId("notes-header");
-                notesList.getChildren().add(notesHeader);
-                person.getNotes().stream()
-                        .sorted(Comparator.comparing(note -> note.getNote()))
-                        .forEach(note -> {
-                            Label label = new Label("• " + note.getNote());
-                            label.setId("notes-label");
-                            notesList.getChildren().add(label);
-                        });
-            }
+        if (!person.getNotes().isEmpty()) {
+            Label notesHeader = new Label("Notes");
+            notesHeader.setId("notes-header");
+            notesList.getChildren().add(notesHeader);
         }
+
+        person.getNotes().stream()
+            .sorted(Comparator.comparing(Note::getNote))
+            .forEach(note -> {
+                Label label = new Label("• " + note.getNote());
+                label.setId("notes-label");
+                notesList.getChildren().add(label);
+            });
     }
 
     @FXML
