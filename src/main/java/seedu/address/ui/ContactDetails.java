@@ -18,12 +18,10 @@ import seedu.address.model.person.Person;
  * Controller for the contact details panel.
  */
 public class ContactDetails extends UiPart<Region> {
-
     private static final String FXML = "ContactDetails.fxml";
     private final Logger logger = LogsCenter.getLogger(ContactDetails.class);
 
-    private BooleanProperty isEditable = new SimpleBooleanProperty(false);
-
+    private final BooleanProperty isEditorShown = new SimpleBooleanProperty(false);
     private Person person;
 
     @FXML
@@ -31,19 +29,14 @@ public class ContactDetails extends UiPart<Region> {
 
     @FXML
     private Label name;
-
     @FXML
     private Label phoneNo;
-
     @FXML
     private Label email;
-
     @FXML
     private Label address;
-
     @FXML
     private Label notes;
-
     @FXML
     private VBox notesList;
 
@@ -76,9 +69,9 @@ public class ContactDetails extends UiPart<Region> {
         discardChanges.managedProperty().bindBidirectional(discardChanges.visibleProperty());
 
         // Bind the visibilities of the button to the isEditable property
-        edit.visibleProperty().bind(isEditable.not());
-        saveChanges.visibleProperty().bind(isEditable);
-        discardChanges.visibleProperty().bind(isEditable);
+        edit.visibleProperty().bind(isEditorShown.not());
+        saveChanges.visibleProperty().bind(isEditorShown);
+        discardChanges.visibleProperty().bind(isEditorShown);
     }
 
     private void setButtonMinWidth() {
@@ -142,18 +135,18 @@ public class ContactDetails extends UiPart<Region> {
     }
 
     @FXML
-    private void makeFieldsEditable() {
-        isEditable.set(true);
+    private void showEditor() {
+        isEditorShown.set(true);
     }
 
     @FXML
     private void discardEditChanges() {
-        isEditable.set(false);
+        isEditorShown.set(false);
     }
 
     @FXML
     private void saveEditChanges() {
-        isEditable.set(false);
+        isEditorShown.set(false);
         // TODO: Save the changes to the person
     }
 }
