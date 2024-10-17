@@ -120,6 +120,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Index getFocusedIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
