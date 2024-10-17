@@ -50,9 +50,8 @@ public class ContactDetails extends UiPart<Region> {
     /**
      * Creates a {@code ContactDetailsPanel} with the given {@code Person} information.
      */
-    public ContactDetails(Person person) {
+    public ContactDetails() {
         super(FXML);
-        this.person = person;
         bindButtonToEditableProperty();
         setButtonMinWidth();
     }
