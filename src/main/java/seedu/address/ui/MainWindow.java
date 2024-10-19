@@ -119,8 +119,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-
-        contactDetailsPanel = new ContactDetails(logic.getFocusedPerson());
+        contactDetailsPanel = new ContactDetails(this::executeCommand);
         contactDetailsPanelPlaceholder.getChildren().add(contactDetailsPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
@@ -156,7 +155,7 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the contact details panel for the seleted contact.
      */
     public void handlePanelUpdate() {
-        contactDetailsPanel.setPerson(logic.getFocusedPerson());
+        contactDetailsPanel.setPerson(logic.getFocusedPerson(), logic.getFocusedIndex());
     }
 
     /**

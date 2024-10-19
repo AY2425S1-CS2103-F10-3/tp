@@ -41,9 +41,14 @@ public interface Model {
     Path getAddressBookFilePath();
 
     /**
-     * Returns the person who will be focused on.
+     * Returns the person who is currently being focused on.
      */
     Person getFocusedPerson();
+
+    /**
+     * Returns the index of the person who is currently being focused on.
+     */
+    Index getFocusedIndex();
 
     /**
      * Sets the user prefs' address book file path.

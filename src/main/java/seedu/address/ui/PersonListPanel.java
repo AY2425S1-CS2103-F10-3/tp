@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 
 /**
@@ -56,7 +57,7 @@ public class PersonListPanel extends UiPart<Region> {
         Person selectedPerson = personListView.getSelectionModel().getSelectedItem();
 
         if (index != -1) {
-            contactDetails.setPerson(selectedPerson);
+            contactDetails.setPerson(selectedPerson, Index.fromZeroBased(index));
             logger.info("Clicked on person: " + selectedPerson + " at index " + index);
         } else {
             logger.info("Clicked on an empty area of the ListView");
